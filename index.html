@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>CDN Failover</title>
+    </head>
+
+    <body>
+        <h1>CDN Failover Example</h1>
+    </body>
+
+    <script>
+        function onFailedLoad(url, callback){
+            var tm_d = document,
+                g = tm_d.createElement("script");
+            g.type = "text/javascript";
+            g.src = url;
+            g.onload = ()=>{callback()}
+            tm_d.getElementsByTagName("head")[0].appendChild(g);
+        }
+    </script>
+
+    <script 
+        src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"
+        type="text/javascript"
+        onerror="onFailedLoad('www.yourexamplefailovercdnhere.com/path/to/your/failoverjs', ()=>myFunctionInsideTheLibrary())"
+    ></script>
+</html>
